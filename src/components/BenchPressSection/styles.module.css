@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  height: calc(90vh - 8rem);
+  padding: 0 10rem;
+  background: #4e5b82;
+}
+
+.container > div {
+  width: 50%;
+}
+
+.container video {
+  width: 100%;
+}
+
+.info p {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  width: 80%;
+}
+
+.info p:first-of-type {
+  padding-top: 4rem;
+}
+
+.info .instructions {
+  margin-top: 5rem;
+  font-size: 1rem;
+}
+
+.repButton {
+  background: none;
+  border: 1px solid #fff;
+  padding: .5rem 1rem;
+  color: #fff;
+  transition: all ease-in-out .2s;
+}
+
+.repButton:hover {
+  background: #fff;
+  color: #4e5b82;
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
