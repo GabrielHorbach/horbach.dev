@@ -130,8 +130,8 @@ const translations = {
 
   // Contact
   "contact.title": {
-    pt: "Entre em Contato",
-    en: "Get in Touch",
+    pt: "Entre em contato",
+    en: "Get in touch",
   },
   "contact.description": {
     pt: "Estamos prontos para transformar sua ideia em realidade",
@@ -169,7 +169,7 @@ const translations = {
   },
 } as const;
 
-const t = (key: string, lang: Language = "en"): string => {
+const t = (key: string, lang: Language = "pt"): string => {
   if (!translations[key as TranslationKey]) {
     console.warn(`Translation '${key}' not found.`);
     return key;
