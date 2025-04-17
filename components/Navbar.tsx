@@ -6,6 +6,7 @@ import { useState } from "react";
 import { t } from "@/constants/translations";
 import { Locale } from "@/config/languages";
 import Link from "next/link";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 interface NavbarProps {
   lang: Locale;
@@ -60,29 +61,7 @@ export function Navbar({ lang }: NavbarProps) {
               {t("nav.contact", lang)}
             </Link>
 
-            {/* Language Toggle */}
-            <div className="flex items-center space-x-2">
-              <Button
-                // onClick={() => setLanguage("pt")}
-                className={`px-2 py-1 text-sm rounded-md ${
-                  lang === "pt"
-                    ? "bg-horbach-100 text-horbach-800 font-medium"
-                    : "text-gray-600 hover:bg-gray-100 bg-transparent"
-                }`}
-              >
-                PT
-              </Button>
-              <Button
-                // onClick={() => setLanguage("en")}
-                className={`px-2 py-1 text-sm rounded-md ${
-                  lang === "en"
-                    ? "bg-horbach-100 text-horbach-800 font-medium"
-                    : "text-gray-600 hover:bg-gray-100 bg-transparent"
-                }`}
-              >
-                EN
-              </Button>
-            </div>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile menu Button */}
@@ -134,29 +113,7 @@ export function Navbar({ lang }: NavbarProps) {
               {t("nav.contact", lang)}
             </Link>
 
-            {/* Language Toggle for Mobile */}
-            <div className="flex items-center space-x-2 pt-2">
-              <Button
-                // onClick={() => setLanguage("pt")}
-                className={`px-3 py-1 text-sm rounded-md ${
-                  lang === "pt"
-                    ? "bg-horbach-100 text-horbach-800 font-medium"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                PT
-              </Button>
-              <Button
-                // onClick={() => setLanguage("en")}
-                className={`px-3 py-1 text-sm rounded-md ${
-                  lang === "en"
-                    ? "bg-horbach-100 text-horbach-800 font-medium"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                EN
-              </Button>
-            </div>
+            <LanguageSwitcher />
           </div>
         )}
       </div>
