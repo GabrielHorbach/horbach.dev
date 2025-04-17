@@ -1,14 +1,19 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { WhatsappIcon } from "@/components/icons/WhatsApp";
-import { Mail, Send } from "lucide-react";
+import { Loader, Mail, Send } from "lucide-react";
 import { t } from "@/constants/translations";
 import { Locale } from "@/config/languages";
-
+import { sendEmail } from "@/app/actions/contact";
+import { useActionState } from "react";
 interface ContactSectionProps {
   lang: Locale;
 }
 
 export function ContactSection({ lang }: ContactSectionProps) {
+  const [sent, formAction, isPending] = useActionState(sendEmail, null);
+
   const whatsappNumber = lang === "pt" ? "(51) 98357-8751" : "+5551983578751";
   const whatsappMessage =
     lang === "pt"
@@ -37,7 +42,7 @@ export function ContactSection({ lang }: ContactSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-white/10 backdrop-blur-md rounded-xl p-8 shadow-2xl">
-            <form className="space-y-5">
+            <form id="contact-form" action={formAction} className="space-y-5">
               <div>
                 <label
                   htmlFor="name"
@@ -48,6 +53,8 @@ export function ContactSection({ lang }: ContactSectionProps) {
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  required
                   className="w-full px-4 py-3 bg-white/10 border border-horbach-300/20 rounded-lg focus:ring-2 focus:ring-horbach-500 text-white"
                 />
               </div>
@@ -62,6 +69,8 @@ export function ContactSection({ lang }: ContactSectionProps) {
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  required
                   className="w-full px-4 py-3 bg-white/10 border border-horbach-300/20 rounded-lg focus:ring-2 focus:ring-horbach-500 text-white"
                 />
               </div>
@@ -75,14 +84,47 @@ export function ContactSection({ lang }: ContactSectionProps) {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  required
                   rows={5}
                   className="w-full px-4 py-3 bg-white/10 border border-horbach-300/20 rounded-lg focus:ring-2 focus:ring-horbach-500 text-white"
                 ></textarea>
               </div>
 
-              <Button className="w-full bg-horbach-500 hover:bg-horbach-600 text-white py-6">
-                {t("contact.form.submit", lang)}
-                <Send className="ml-2 h-4 w-4" />
+              {!isPending && sent !== null && (
+                <div
+                  className={`p-4 rounded-lg ${
+                    sent
+                      ? "bg-green-500/20 text-green-200"
+                      : "bg-red-500/20 text-red-200"
+                  }`}
+                >
+                  {sent
+                    ? lang === "pt"
+                      ? "Mensagem enviada com sucesso!"
+                      : "Message sent successfully!"
+                    : lang === "pt"
+                      ? "Erro ao enviar mensagem. Por favor, tente novamente."
+                      : "Error sending message. Please try again."}
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                disabled={isPending}
+                className="w-full bg-horbach-500 hover:bg-horbach-600 text-white py-6 disabled:opacity-50"
+              >
+                {isPending ? (
+                  <>
+                    {lang === "pt" ? "Enviando..." : "Sending..."}
+                    <Loader className="ml-2 h-4 w-4 animate-spin" />
+                  </>
+                ) : (
+                  <>
+                    {t("contact.form.submit", lang)}
+                    <Send className="ml-2 h-4 w-4" />
+                  </>
+                )}
               </Button>
             </form>
           </div>
@@ -96,7 +138,6 @@ export function ContactSection({ lang }: ContactSectionProps) {
                 {t("contact.whatsapp", lang)}
               </h3>
               <p className="text-green-100 mb-4">
-                {/* Instantaneous response message */}
                 {lang === "pt"
                   ? "Resposta instantânea para suas dúvidas"
                   : "Instant response to your inquiries"}
