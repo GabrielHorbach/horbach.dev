@@ -18,6 +18,13 @@ function getLocale(request: NextRequest): string {
 
   // Check the Accept-Language header
   const acceptLanguage = request.headers.get("accept-language") || "";
+
+  // First check specifically for Brazilian Portuguese
+  if (acceptLanguage.includes("pt-BR") || acceptLanguage.includes("pt")) {
+    return "pt";
+  }
+
+  // Then check for other supported languages
   const preferredLanguage = acceptLanguage
     .split(",")
     .map((lang) => lang.split(";")[0].trim())
@@ -27,7 +34,6 @@ function getLocale(request: NextRequest): string {
     return languageCodeToLocale[preferredLanguage];
   }
 
-  // Default to the default locale
   return defaultLocale;
 }
 
