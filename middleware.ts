@@ -63,7 +63,6 @@ export function middleware(request: NextRequest) {
 
   // For Portuguese users at the root path, rewrite to /pt without changing the URL
   if (locale === "pt" && pathname === "/") {
-    // Create a rewrite response that internally maps "/" to "/pt"
     const url = request.nextUrl.clone();
     url.pathname = "/pt";
     return NextResponse.rewrite(url);
