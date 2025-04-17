@@ -9,9 +9,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { Locale } from "@/config/languages";
 
 interface PageProps {
-  params: {
-    lang: Locale;
-  };
+  params: Promise<{ lang: Locale }>;
 }
 
 export default async function Home({ params }: PageProps) {
