@@ -58,8 +58,18 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Redirect to the locale path
+  // Get the locale based on user's language preference
   const locale = getLocale(request);
+
+  // For Portuguese users at the root path, rewrite to /pt without changing the URL
+  if (locale === "pt" && pathname === "/") {
+    // Create a rewrite response that internally maps "/" to "/pt"
+    const url = request.nextUrl.clone();
+    url.pathname = "/pt";
+    return NextResponse.rewrite(url);
+  }
+
+  // For all other cases, redirect to the locale path
   const newUrl = new URL(`/${locale}${pathname}`, request.url);
   return NextResponse.redirect(newUrl);
 }

@@ -9,9 +9,20 @@ export default function LanguageSwitcher() {
   const router = useRouter();
 
   // Extract current language from path
-  const currentLang = pathname.split("/")[1] as Locale;
+  // If at root path ("/"), treat it as Portuguese
+  const pathParts = pathname.split("/");
+  const currentLang =
+    pathParts.length > 1 && pathParts[1] !== ""
+      ? (pathParts[1] as Locale)
+      : "pt";
 
   const handleLanguageChange = (newLocale: Locale) => {
+    // If at root path, redirect to the new locale
+    if (pathname === "/") {
+      router.push(`/${newLocale}`);
+      return;
+    }
+
     // Replace the current locale in the path with the new one
     const newPath = pathname.replace(`/${currentLang}`, `/${newLocale}`);
     router.push(newPath);
