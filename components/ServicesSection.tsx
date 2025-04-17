@@ -1,6 +1,12 @@
 import { t } from "@/constants/translations";
 import { Locale } from "@/config/languages";
-import { Code, ShoppingCart, LayoutDashboard, Hammer } from "lucide-react";
+import {
+  Code,
+  ShoppingCart,
+  LayoutDashboard,
+  Hammer,
+  Lightbulb,
+} from "lucide-react";
 
 interface ServicesSectionProps {
   lang: Locale;
@@ -17,13 +23,6 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
     },
     {
       icon: (
-        <LayoutDashboard className="h-8 w-8 text-horbach-600 group-hover:text-white transition-colors" />
-      ),
-      title: t("service.app.title", lang),
-      description: t("service.app.description", lang),
-    },
-    {
-      icon: (
         <ShoppingCart className="h-8 w-8 text-horbach-600 group-hover:text-white transition-colors" />
       ),
       title: t("service.ecommerce.title", lang),
@@ -35,6 +34,13 @@ export function ServicesSection({ lang }: ServicesSectionProps) {
       ),
       title: t("service.maintenance.title", lang),
       description: t("service.maintenance.description", lang),
+    },
+    {
+      icon: (
+        <Lightbulb className="h-8 w-8 text-horbach-600 group-hover:text-white transition-colors" />
+      ),
+      title: t("service.consulting.title", lang),
+      description: t("service.consulting.description", lang),
     },
   ];
 

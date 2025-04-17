@@ -89,6 +89,14 @@ const translations = {
     pt: "Suporte contínuo e manutenção para manter seu site funcionando perfeitamente.",
     en: "Ongoing support and maintenance to keep your website running flawlessly.",
   },
+  "service.consulting.title": {
+    pt: "Consultoria",
+    en: "Consulting",
+  },
+  "service.consulting.description": {
+    pt: "Consultoria para melhorar a eficiência e otimizar o desempenho do seu site.",
+    en: "Consulting to improve the efficiency and optimize the performance of your website.",
+  },
 
   // Projects
   "projects.title": {
