@@ -1,13 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { WhatsappIcon } from "@/components/icons/WhatsApp";
 import { Mail, Send } from "lucide-react";
-import { t, language } from "@/constants/translations";
+import { t } from "@/constants/translations";
+import { Locale } from "@/config/languages";
 
-export function ContactSection() {
-  const whatsappNumber =
-    language === "pt" ? "(51) 98357-8751" : "+5551983578751";
+interface ContactSectionProps {
+  lang: Locale;
+}
+
+export function ContactSection({ lang }: ContactSectionProps) {
+  const whatsappNumber = lang === "pt" ? "(51) 98357-8751" : "+5551983578751";
   const whatsappMessage =
-    language === "pt"
+    lang === "pt"
       ? "Olá! Gostaria de saber mais sobre os serviços da Horbach Dev."
       : "Hello! I would like to know more about Horbach Dev services.";
   const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
@@ -22,9 +26,11 @@ export function ContactSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl mb-4">
-            {t("contact.title")}
+            {t("contact.title", lang)}
           </h2>
-          <p className="text-lg text-horbach-100">{t("contact.description")}</p>
+          <p className="text-lg text-horbach-100">
+            {t("contact.description", lang)}
+          </p>
           <div className="w-20 h-1 bg-horbach-500 mx-auto mt-6"></div>
         </div>
 
@@ -37,7 +43,7 @@ export function ContactSection() {
                   htmlFor="name"
                   className="block text-sm font-medium text-horbach-100 mb-1"
                 >
-                  {t("contact.form.name")}
+                  {t("contact.form.name", lang)}
                 </label>
                 <input
                   type="text"
@@ -51,7 +57,7 @@ export function ContactSection() {
                   htmlFor="email"
                   className="block text-sm font-medium text-horbach-100 mb-1"
                 >
-                  {t("contact.form.email")}
+                  {t("contact.form.email", lang)}
                 </label>
                 <input
                   type="email"
@@ -65,7 +71,7 @@ export function ContactSection() {
                   htmlFor="message"
                   className="block text-sm font-medium text-horbach-100 mb-1"
                 >
-                  {t("contact.form.message")}
+                  {t("contact.form.message", lang)}
                 </label>
                 <textarea
                   id="message"
@@ -75,7 +81,7 @@ export function ContactSection() {
               </div>
 
               <Button className="w-full bg-horbach-500 hover:bg-horbach-600 text-white py-6">
-                {t("contact.form.submit")}
+                {t("contact.form.submit", lang)}
                 <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
@@ -87,11 +93,11 @@ export function ContactSection() {
             <div className="bg-green-600 rounded-xl p-6 flex flex-col items-center text-center hover:bg-green-700 transition-colors shadow-lg">
               <WhatsappIcon className="h-16 w-16 mb-4" />
               <h3 className="font-heading font-semibold text-xl mb-2">
-                {t("contact.whatsapp")}
+                {t("contact.whatsapp", lang)}
               </h3>
               <p className="text-green-100 mb-4">
                 {/* Instantaneous response message */}
-                {language === "pt"
+                {lang === "pt"
                   ? "Resposta instantânea para suas dúvidas"
                   : "Instant response to your inquiries"}
               </p>
@@ -111,7 +117,7 @@ export function ContactSection() {
                 <Mail className="h-8 w-8" />
               </div>
               <h3 className="font-heading font-semibold text-xl mb-2">
-                {t("contact.email")}
+                {t("contact.email", lang)}
               </h3>
               <a
                 href="mailto:gabrielhorbachmachado@outlook.com"

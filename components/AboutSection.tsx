@@ -1,8 +1,13 @@
-import { Globe } from "lucide-react";
 import { t } from "@/constants/translations";
+import { Locale } from "@/config/languages";
+import { Globe } from "lucide-react";
 import Image from "next/image";
 
-export function AboutSection() {
+interface AboutSectionProps {
+  lang: Locale;
+}
+
+export function AboutSection({ lang }: AboutSectionProps) {
   return (
     <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-6">
@@ -26,10 +31,10 @@ export function AboutSection() {
               Horbach Dev
             </div>
             <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900">
-              {t("about.title")}
+              {t("about.title", lang)}
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">
-              {t("about.description")}
+              {t("about.description", lang)}
             </p>
 
             <div className="flex items-center gap-4 mt-8 p-4 bg-horbach-50 border border-horbach-100 rounded-lg">
@@ -37,7 +42,7 @@ export function AboutSection() {
                 <Globe className="h-6 w-6 text-horbach-600" />
               </div>
               <p className="font-medium text-gray-800">
-                {t("about.international")}
+                {t("about.international", lang)}
               </p>
             </div>
           </div>

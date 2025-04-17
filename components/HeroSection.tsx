@@ -1,8 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { t } from "@/constants/translations";
+import { Locale } from "@/config/languages";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  lang: Locale;
+}
+
+export function HeroSection({ lang }: HeroSectionProps) {
   return (
     <section
       id="home"
@@ -12,10 +17,10 @@ export function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="flex-1 space-y-6">
             <h1 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-horbach-900 leading-tight">
-              {t("hero.title")}
+              {t("hero.title", lang)}
             </h1>
             <p className="text-lg md:text-xl text-gray-700 max-w-lg">
-              {t("hero.subtitle")}
+              {t("hero.subtitle", lang)}
             </p>
             <div className="pt-4">
               <Button
@@ -23,7 +28,7 @@ export function HeroSection() {
                 asChild
               >
                 <a href="#contact">
-                  {t("hero.cta")}
+                  {t("hero.cta", lang)}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>

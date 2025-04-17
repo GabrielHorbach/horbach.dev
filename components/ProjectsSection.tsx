@@ -1,27 +1,32 @@
 import { ExternalLink } from "lucide-react";
 import { t } from "@/constants/translations";
+import { Locale } from "@/config/languages";
 
-export function ProjectsSection() {
+interface ProjectsSectionProps {
+  lang: Locale;
+}
+
+export function ProjectsSection({ lang }: ProjectsSectionProps) {
   const projects = [
     {
       image:
         "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-      title: t("project1.title"),
-      description: t("project1.description"),
+      title: t("project1.title", lang),
+      description: t("project1.description", lang),
       tags: ["React", "Node.js", "MongoDB"],
     },
     {
       image:
         "https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-      title: t("project2.title"),
-      description: t("project2.description"),
+      title: t("project2.title", lang),
+      description: t("project2.description", lang),
       tags: ["Next.js", "Stripe", "PostgreSQL"],
     },
     {
       image:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
-      title: t("project3.title"),
-      description: t("project3.description"),
+      title: t("project3.title", lang),
+      description: t("project3.description", lang),
       tags: ["Vue.js", "D3.js", "Firebase"],
     },
   ];
@@ -31,9 +36,11 @@ export function ProjectsSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-heading font-bold text-3xl md:text-4xl text-gray-900 mb-4">
-            {t("projects.title")}
+            {t("projects.title", lang)}
           </h2>
-          <p className="text-lg text-gray-600">{t("projects.subtitle")}</p>
+          <p className="text-lg text-gray-600">
+            {t("projects.subtitle", lang)}
+          </p>
           <div className="w-20 h-1 bg-horbach-600 mx-auto mt-6"></div>
         </div>
 
@@ -73,7 +80,7 @@ export function ProjectsSection() {
                   href="#"
                   className="inline-flex items-center text-horbach-700 hover:text-horbach-800 font-medium"
                 >
-                  {t("project.view")}
+                  {t("project.view", lang)}
                   <ExternalLink className="ml-1 h-4 w-4" />
                 </a>
               </div>

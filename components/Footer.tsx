@@ -1,6 +1,11 @@
-import { t, language } from "@/constants/translations";
+import { t } from "@/constants/translations";
+import { Locale } from "@/config/languages";
 
-export function Footer() {
+interface FooterProps {
+  lang: Locale;
+}
+
+export function Footer({ lang }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -13,7 +18,7 @@ export function Footer() {
               Horbach Dev
             </h3>
             <p className="text-horbach-200 mb-4">
-              {language === "pt"
+              {lang === "pt"
                 ? "Transformando ideias em experiências digitais excepcionais."
                 : "Transforming ideas into exceptional digital experiences."}
             </p>
@@ -22,7 +27,7 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="font-medium text-lg mb-4 text-horbach-100">
-              {language === "pt" ? "Links Rápidos" : "Quick Links"}
+              {lang === "pt" ? "Links Rápidos" : "Quick Links"}
             </h4>
             <ul className="space-y-2">
               <li>
@@ -30,7 +35,7 @@ export function Footer() {
                   href="#home"
                   className="text-horbach-300 hover:text-white transition-colors"
                 >
-                  {t("nav.home")}
+                  {t("nav.home", lang)}
                 </a>
               </li>
               <li>
@@ -38,7 +43,7 @@ export function Footer() {
                   href="#about"
                   className="text-horbach-300 hover:text-white transition-colors"
                 >
-                  {t("nav.about")}
+                  {t("nav.about", lang)}
                 </a>
               </li>
               <li>
@@ -46,7 +51,7 @@ export function Footer() {
                   href="#services"
                   className="text-horbach-300 hover:text-white transition-colors"
                 >
-                  {t("nav.services")}
+                  {t("nav.services", lang)}
                 </a>
               </li>
               <li>
@@ -54,7 +59,7 @@ export function Footer() {
                   href="#projects"
                   className="text-horbach-300 hover:text-white transition-colors"
                 >
-                  {t("nav.projects")}
+                  {t("nav.projects", lang)}
                 </a>
               </li>
               <li>
@@ -62,7 +67,7 @@ export function Footer() {
                   href="#contact"
                   className="text-horbach-300 hover:text-white transition-colors"
                 >
-                  {t("nav.contact")}
+                  {t("nav.contact", lang)}
                 </a>
               </li>
             </ul>
@@ -71,7 +76,7 @@ export function Footer() {
           {/* Contact Info */}
           <div>
             <h4 className="font-medium text-lg mb-4 text-horbach-100">
-              {language === "pt" ? "Contato" : "Contact"}
+              {lang === "pt" ? "Contato" : "Contact"}
             </h4>
             <div className="space-y-3">
               <p className="text-horbach-300">
@@ -88,7 +93,7 @@ export function Footer() {
 
         <div className="border-t border-horbach-800 mt-8 pt-8 text-center text-horbach-400">
           <p>
-            © {currentYear} Horbach Dev. {t("footer.rights")}.
+            © {currentYear} Horbach Dev. {t("footer.rights", lang)}.
           </p>
         </div>
       </div>
