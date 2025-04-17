@@ -14,7 +14,7 @@ interface ContactSectionProps {
 export function ContactSection({ lang }: ContactSectionProps) {
   const [sent, formAction, isPending] = useActionState(sendEmail, null);
 
-  const whatsappNumber = lang === "pt" ? "(51) 98357-8751" : "+5551983578751";
+  const whatsappNumber = "+5551983578751";
   const whatsappMessage =
     lang === "pt"
       ? "Olá! Gostaria de saber mais sobre os serviços da Horbach Dev."
